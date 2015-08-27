@@ -1,6 +1,12 @@
 package br.com.twitchgames.model;
 
+import android.support.annotation.Nullable;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TwitchGame {
     private final Game game;
@@ -29,5 +35,17 @@ public class TwitchGame {
 
     public int getChannels() {
         return channels;
+    }
+
+    static List<TwitchGame> toTwitchGames(@Nullable JSONArray jsonArray) {
+        ArrayList<TwitchGame> twitchGames = new ArrayList<>();
+
+        if (jsonArray != null) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                twitchGames.add(new TwitchGame(jsonArray.optJSONObject(i)));
+            }
+        }
+
+        return twitchGames;
     }
 }

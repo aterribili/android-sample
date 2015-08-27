@@ -1,9 +1,5 @@
 package br.com.twitchgames.model;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -23,35 +19,14 @@ public class TwitchResult {
     }
 
     public TwitchResult(JSONObject jsonObject) {
-        this(null, jsonObject.optInt("_total"));
+        this(TwitchGame.toTwitchGames(jsonObject.optJSONArray("top")), jsonObject.optInt("_total"));
     }
 
-    public static class TwitchResultBuilder {
-        private int total;
-        private List<TwitchGame> top;
+    public int getTotal() {
+        return total;
+    }
 
-        public TwitchResultBuilder withTotal(@NonNull int total) {
-            this.total = total;
-
-            return this;
-        }
-
-        public TwitchResultBuilder withTwitchGames(@Nullable JSONArray jsonArray) {
-            ArrayList<TwitchGame> twitchGames = new ArrayList<>();
-
-            if (jsonArray != null) {
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    twitchGames.add(new TwitchGame(jsonArray.optJSONObject(i)));
-                }
-            }
-
-            this.top = twitchGames;
-
-            return this;
-        }
-
-        public TwitchResult build() {
-            return new TwitchResult(top, total);
-        }
+    public List<TwitchGame> getTop() {
+        return top;
     }
 }
