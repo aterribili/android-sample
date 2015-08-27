@@ -1,4 +1,4 @@
-package br.com.twitchgames.repository.service;
+package br.com.twitchgames.repository.client.converter.service;
 
 import br.com.twitchgames.model.TwitchResult;
 import retrofit.Callback;

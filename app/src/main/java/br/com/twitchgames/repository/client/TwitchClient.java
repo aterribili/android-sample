@@ -4,7 +4,7 @@ import br.com.twitchgames.BuildConfig;
 import br.com.twitchgames.infra.TwitchRestAdapter;
 import br.com.twitchgames.model.TwitchResult;
 import br.com.twitchgames.repository.client.converter.TwitchConverter;
-import br.com.twitchgames.repository.service.TwitchService;
+import br.com.twitchgames.repository.client.converter.service.TwitchService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
