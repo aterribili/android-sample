@@ -2,7 +2,9 @@ package br.com.twitchgames.model;
 
 import org.json.JSONObject;
 
-class TwitchUrlImage {
+import java.io.Serializable;
+
+class TwitchUrlImage implements Serializable {
     private final String large;
     private final String medium;
     private final String small;

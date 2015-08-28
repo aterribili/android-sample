@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TwitchGames</string>
+    <string name="title_activity_twitch">TwitchActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="list">Lista</string>
+    <string name="grid">Grade</string>
 </resources>

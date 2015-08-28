@@ -5,10 +5,11 @@ import android.support.annotation.Nullable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TwitchGame {
+public class TwitchGame implements Serializable{
     private final Game game;
     private final int viewers;
     private final int channels;

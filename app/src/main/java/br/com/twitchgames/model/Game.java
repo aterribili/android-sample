@@ -2,7 +2,9 @@ package br.com.twitchgames.model;
 
 import org.json.JSONObject;
 
-class Game {
+import java.io.Serializable;
+
+class Game implements Serializable {
     private final String name;
     private final TwitchUrlImage box;
     private final TwitchUrlImage logo;

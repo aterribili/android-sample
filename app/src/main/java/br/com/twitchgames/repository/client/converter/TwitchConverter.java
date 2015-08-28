@@ -11,6 +11,7 @@ import java.lang.reflect.Type;
 import java.util.Scanner;
 
 import br.com.twitchgames.model.TwitchResult;
+import br.com.twitchgames.repository.dao.TwitchDAO;
 import retrofit.converter.ConversionException;
 import retrofit.mime.MimeUtil;
 import retrofit.mime.TypedInput;
@@ -26,8 +27,10 @@ public class TwitchConverter implements retrofit.converter.Converter {
 
         try {
             InputStreamReader reader = new InputStreamReader(body.in(), charset);
+            JSONObject jsonObject = new JSONObject(convertStreamToString(reader));
+            new TwitchDAO(null).save(jsonObject);
 
-            return new TwitchResult(new JSONObject(convertStreamToString(reader)));
+            return new TwitchResult(jsonObject);
         } catch (IOException e) {
             Log.e("TwitchGames", e.getMessage());
         } catch (JSONException e) {

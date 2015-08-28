@@ -2,10 +2,11 @@ package br.com.twitchgames.model;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TwitchResult {
+public class TwitchResult implements Serializable {
     private final int total;
     private final List<TwitchGame> top;
 
