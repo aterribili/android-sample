@@ -13,7 +13,7 @@ import br.com.twitchgames.repository.broadcast.TwitchDelegate;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class TwitchActivity extends AppCompatActivity implements TwitchDelegate{
+public class TwitchActivity extends AppCompatActivity implements TwitchDelegate {
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.menu_filter) RadioGroup radioGroup;
     RepositoryBroadcast repositoryBroadcast;

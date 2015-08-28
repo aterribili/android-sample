@@ -21,7 +21,7 @@ public class TwitchClient {
 
     public void getGames() {
         TwitchService service = new TwitchRestAdapter(BuildConfig.MAIN_URL)
-                .create(TwitchService.class, new TwitchConverter());
+                .create(TwitchService.class, new TwitchConverter(context));
 
         service.getGames(new Callback<TwitchResult>() {
 

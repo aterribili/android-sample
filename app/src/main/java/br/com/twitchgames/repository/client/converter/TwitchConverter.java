@@ -1,5 +1,6 @@
 package br.com.twitchgames.repository.client.converter;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -18,6 +19,12 @@ import retrofit.mime.TypedInput;
 import retrofit.mime.TypedOutput;
 
 public class TwitchConverter implements retrofit.converter.Converter {
+    private final Context context;
+
+    public TwitchConverter(Context context) {
+        this.context = context;
+    }
+
     @Override
     public TwitchResult fromBody(TypedInput body, Type type) throws ConversionException {
         String charset = "UTF-8";
@@ -28,7 +35,7 @@ public class TwitchConverter implements retrofit.converter.Converter {
         try {
             InputStreamReader reader = new InputStreamReader(body.in(), charset);
             JSONObject jsonObject = new JSONObject(convertStreamToString(reader));
-            new TwitchDAO(null).save(jsonObject);
+            new TwitchDAO(context).save(jsonObject);
 
             return new TwitchResult(jsonObject);
         } catch (IOException e) {

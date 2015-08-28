@@ -30,6 +30,14 @@ public class TwitchGame implements Serializable{
         return game;
     }
 
+    public String getGameName() {
+        return game.getName();
+    }
+
+    public String getGameImageUrl() {
+        return game.getBox().getMedium();
+    }
+
     public int getViewers() {
         return viewers;
     }
