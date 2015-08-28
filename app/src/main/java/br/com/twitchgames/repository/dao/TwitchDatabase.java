@@ -28,7 +28,7 @@ public class TwitchDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        database.execSQL(String.format("CREATE TABLE %s (id INTEGER PRIMARY KEY, json TEXT", TWITCH_TABLE));
+        database.execSQL(String.format("CREATE TABLE %s (id INTEGER PRIMARY KEY, json TEXT);", TWITCH_TABLE));
     }
 
     @Override
