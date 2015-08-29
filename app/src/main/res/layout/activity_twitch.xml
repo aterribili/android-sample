@@ -32,6 +32,7 @@
                 android:layout_weight="25"
                 android:background="@drawable/selected"
                 android:button="@null"
+                android:checked="true"
                 android:gravity="center"
                 android:text="@string/list" />
 
@@ -42,7 +43,6 @@
                 android:layout_weight="25"
                 android:background="@drawable/selected"
                 android:button="@null"
-                android:checked="true"
                 android:gravity="center"
                 android:text="@string/grid" />
 
