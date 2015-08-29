@@ -27,26 +27,17 @@ public class TwitchActivity extends AppCompatActivity implements TwitchDelegate 
         ButterKnife.bind(this);
 
         toolbar.setTitle("TwitchGames");
-        repositoryBroadcast = new RepositoryBroadcast(this, this);
+        repositoryBroadcast = new RepositoryBroadcast(this);
 
         TwitchRepository repository = new TwitchRepository(this);
         repository.getTwitchGames();
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.grid) {
-                    LayoutTypeBroadcast.changeLayoutToType(LayoutType.GRID, TwitchActivity.this);
-                } else {
-                    LayoutTypeBroadcast.changeLayoutToType(LayoutType.LIST, TwitchActivity.this);
-                }
-            }
-        });
+        radioGroup.setOnCheckedChangeListener(new RadioListener());
     }
 
     @Override
     public void success(TwitchResult twitchResult) {
-        repositoryBroadcast.unregister(this);
+        repositoryBroadcast.unregister();
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_main, TwitchFragment.newInstance(twitchResult))
@@ -56,6 +47,16 @@ public class TwitchActivity extends AppCompatActivity implements TwitchDelegate 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        repositoryBroadcast.unregister(this);
+        repositoryBroadcast.unregister();
+    }
+
+    private class RadioListener implements RadioGroup.OnCheckedChangeListener {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if (checkedId == R.id.grid)
+                LayoutTypeBroadcast.changeLayoutToType(LayoutType.GRID, TwitchActivity.this);
+            else
+                LayoutTypeBroadcast.changeLayoutToType(LayoutType.LIST, TwitchActivity.this);
+        }
     }
 }

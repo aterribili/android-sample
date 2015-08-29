@@ -34,6 +34,6 @@ public class TwitchRepository implements TwitchDelegate {
     @Override
     public void success(TwitchResult twitchResult) {
         this.twitchBroadcast.unregister(context);
-        RepositoryBroadcast.twitchReceived(twitchResult, context);
+        RepositoryBroadcast.twitchReceived(twitchResult);
     }
 }
