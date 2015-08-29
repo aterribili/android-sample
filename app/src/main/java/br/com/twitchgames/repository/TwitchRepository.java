@@ -2,6 +2,9 @@ package br.com.twitchgames.repository;
 
 import android.content.Context;
 
+import javax.inject.Inject;
+
+import br.com.twitchgames.infra.TwitchApplication;
 import br.com.twitchgames.model.TwitchResult;
 import br.com.twitchgames.repository.broadcast.RepositoryBroadcast;
 import br.com.twitchgames.repository.broadcast.TwitchBroadcast;
@@ -14,10 +17,10 @@ public class TwitchRepository implements TwitchDelegate {
     private final TwitchClient twitchClient;
     private final TwitchDAO twitchDAO;
     private final TwitchBroadcast twitchBroadcast;
-    private final Context context;
+    @Inject Context context;
 
-    public TwitchRepository(Context context) {
-        this.context = context;
+    public TwitchRepository() {
+        TwitchApplication.getTwitchApplication().getComponent().inject(this);
         this.twitchClient = new TwitchClient(context);
         this.twitchDAO = new TwitchDAO(context);
         this.twitchBroadcast = new TwitchBroadcast(this, context);

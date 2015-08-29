@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.RadioGroup;
 
+import javax.inject.Inject;
+
 import br.com.twitchgames.R;
+import br.com.twitchgames.infra.TwitchApplication;
 import br.com.twitchgames.model.TwitchResult;
 import br.com.twitchgames.presentation.broadcast.LayoutType;
 import br.com.twitchgames.presentation.broadcast.LayoutTypeBroadcast;
@@ -18,6 +21,7 @@ import butterknife.ButterKnife;
 public class TwitchActivity extends AppCompatActivity implements TwitchDelegate {
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.menu_filter) RadioGroup radioGroup;
+    @Inject TwitchRepository twitchRepository;
     RepositoryBroadcast repositoryBroadcast;
 
     @Override
@@ -25,12 +29,11 @@ public class TwitchActivity extends AppCompatActivity implements TwitchDelegate 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twitch);
         ButterKnife.bind(this);
+        TwitchApplication.getTwitchApplication().getComponent().inject(this);
 
         toolbar.setTitle("TwitchGames");
         repositoryBroadcast = new RepositoryBroadcast(this);
-
-        TwitchRepository repository = new TwitchRepository(this);
-        repository.getTwitchGames();
+        twitchRepository.getTwitchGames();
 
         radioGroup.setOnCheckedChangeListener(new RadioListener());
     }

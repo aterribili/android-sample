@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 import br.com.twitchgames.R;
+import br.com.twitchgames.infra.TwitchApplication;
 import br.com.twitchgames.model.TwitchGame;
 import br.com.twitchgames.model.TwitchResult;
 import butterknife.Bind;
@@ -18,11 +21,11 @@ import butterknife.ButterKnife;
 
 public class TwitchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final TwitchResult twitchResult;
-    private final Context context;
+    @Inject Context context;
 
-    public TwitchListAdapter(TwitchResult twitchResult, Context context) {
+    public TwitchListAdapter(TwitchResult twitchResult) {
+        TwitchApplication.getTwitchApplication().getComponent().inject(this);
         this.twitchResult = twitchResult;
-        this.context = context;
     }
 
     @Override
@@ -47,10 +50,8 @@ public class TwitchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     class TwitchGameViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.photo)
-        ImageView photo;
-        @Bind(R.id.text)
-        TextView text;
+        @Bind(R.id.photo) ImageView photo;
+        @Bind(R.id.text) TextView text;
 
         public TwitchGameViewHolder(View view) {
             super(view);

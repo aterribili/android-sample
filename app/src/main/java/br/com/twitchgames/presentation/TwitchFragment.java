@@ -52,7 +52,7 @@ public class TwitchFragment extends Fragment implements LayoutDelegate {
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
             TwitchResult twitchResult = (TwitchResult) getArguments().getSerializable("twitch_result");
-            recyclerView.setAdapter(new TwitchListAdapter(twitchResult, getActivity()));
+            recyclerView.setAdapter(new TwitchListAdapter(twitchResult));
         }
     }
 
